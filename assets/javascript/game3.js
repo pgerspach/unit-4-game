@@ -196,6 +196,7 @@ $(document).ready(function() {
       gameStruct.show([classList[1]], "opponent");
       gameStruct.hide([classList[1]], "enemy");
       attackMode = true;
+      $(".result").attr("style", "display:none")
     }
   });
 
@@ -235,6 +236,7 @@ $(document).ready(function() {
   function didWin(userTag, oppTag) {
     if (Math.floor(Number($(".opponent.active").attr("value")) <= 0)) {
       $(".result").html(oppTag.toUpperCase() + " has been defeated!");
+      $(".result").attr("style","display:block")
       gameStruct.hide([oppTag], "opponent");
       attackMode = false;
       return true;
@@ -266,6 +268,7 @@ $(document).ready(function() {
       $(".result").html(
         userTag.toUpperCase() + " has been defeated! YOU LOSE!"
       );
+      $(".result").attr("style","display:block")
       gameStruct.hide([userTag], "user");
       gameStruct.hide([oppTag], "opponent");
 
