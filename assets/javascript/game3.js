@@ -7,10 +7,10 @@ $(document).ready(function() {
         //Object of character objects. This design is intended to make the addition/removal of characters to/from the game easy as editing just this part.
         gandalf: {
           class: "gandalf",
-          health: 230,
+          health: 240,
           baseAttack: 9,
           attack: 9,
-          counter: 12,
+          counter: 13,
           text: "Gandalf",
           image: "assets/images/gandalf.jpg"
         },
@@ -34,9 +34,9 @@ $(document).ready(function() {
         },
         legolas: {
           class: "legolas",
-          health: 170,
+          health: 190,
           baseAttack: 7,
-          attack: 7,
+          attack: 8,
           counter: 18,
           text: "Legolas",
           image: "assets/images/legolas.jpg"
@@ -44,8 +44,8 @@ $(document).ready(function() {
         urukHai: {
           // to add Uruk-hai to game all you have to do is uncomment
           class: "urukHai",
-          health: 120,
-          baseAttack: 10,
+          health: 140,
+          baseAttack: 11,
           attack: 10,
           counter: 19,
           text: "Uruk-Hai",
@@ -97,7 +97,7 @@ $(document).ready(function() {
             gameThis.characters[char].image
           );
           $(".charPoints." + gameThis.characters[char].class).html(
-            String(gameThis.characters[char].health)
+            "HP: "+String(gameThis.characters[char].health)
           );
         }
       },
@@ -170,6 +170,49 @@ $(document).ready(function() {
     //var enemiesLeft=[];
     attackMode = false; //Not attack mode until a defender has been chosen
     gameOn = true;
+    $(".cSelect.character").hover(function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+      $(".charPoints."+thisChar).html("POWER: "+ String(gameStruct.characters[thisChar].attack));
+    }, function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+  
+      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
+    })
+  
+    $(".user.character").hover(function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+      $(".charPoints."+thisChar).html("POWER: "+ String(gameStruct.characters[thisChar].attack));
+    }, function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+  
+      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
+    })
+  
+    $(".opponent.character").hover(function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+      $(".charPoints."+thisChar).html("COUNTER: "+ String(gameStruct.characters[thisChar].counter));
+    }, function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+  
+      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
+    })
+  
+    $(".enemy.character").hover(function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+      $(".charPoints."+thisChar).html("COUNTER: "+ String(gameStruct.characters[thisChar].counter));
+    }, function(){
+      var thisChar = $(this).attr("class").split(" ")[1];
+      console.log(thisChar);
+  
+      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
+    })
   }
 
   $(".characterIcons").on("click", function(event) {
@@ -177,8 +220,8 @@ $(document).ready(function() {
     var classList = $(event.target)
       .attr("class")
       .split(" ");
-    console.log(classList);
-    console.log(classList[1]);
+    //console.log(classList);
+    //console.log(classList[1]);
     gameStruct.show([classList[1]], "user");
     gameStruct.hide(gameStruct.allChar(), "cSelect");
     for (let name in gameStruct.allChar()) {
@@ -187,8 +230,9 @@ $(document).ready(function() {
       }
     }
     oppLeft = Object.keys(gameStruct.characters).length-1;
-    console.log("Opponents Left: "+oppLeft);
+    //console.log("Opponents Left: "+oppLeft);
   });
+  
 
   //   $(".character.user").on("click", function(event) {});
 
@@ -198,8 +242,8 @@ $(document).ready(function() {
       var classList = $(event.target)
         .attr("class")
         .split(" ");
-      console.log(classList);
-      console.log(classList[1]);
+      //console.log(classList);
+      //console.log(classList[1]);
       gameStruct.show([classList[1]], "opponent");
       gameStruct.hide([classList[1]], "enemy");
       attackMode = true;
@@ -219,18 +263,19 @@ $(document).ready(function() {
       var oppTag = $(".opponent.active")
         .attr("class")
         .split(" ")[1];
+  gameStruct.characters[oppTag].health =Math.floor(
+    Number($(".opponent.active").attr("value")) -
+    gameStruct.characters[userTag].attack
+)
 
       $(".opponent.active").attr(
         "value",
         String(
-          Math.floor(
-            Number($(".opponent.active").attr("value")) -
-              gameStruct.characters[userTag].attack
-          )
+          gameStruct.characters[oppTag].health
         )
       );
 
-      $(".charPoints." + oppTag + ".opponent").html(
+      $(".charPoints." + oppTag + ".opponent").html("HP: "+
         String($(".opponent.active").attr("value"))
       );
 
@@ -270,16 +315,19 @@ $(document).ready(function() {
     gameStruct.characters[userTag].attack =
       gameStruct.characters[userTag].attack +
       gameStruct.characters[userTag].baseAttack;
-    $(".user.active").attr(
-      "value",
-      String(
+      gameStruct.characters[userTag].health =
         Math.floor(
           Number($(".user.active").attr("value")) -
             gameStruct.characters[oppTag].counter
         )
+      
+    $(".user.active").attr(
+      "value",
+      String(
+        gameStruct.characters[userTag].health
       )
     );
-    $(".charPoints." + userTag + ".user").html(
+    $(".charPoints." + userTag + ".user").html("HP: "+
       String($(".user.active").attr("value"))
     );
   }
@@ -309,4 +357,5 @@ $(document).ready(function() {
   $(".rstButton").on("click", function() {
     gameStart();
   });
+ 
 });
