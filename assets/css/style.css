@@ -9,30 +9,43 @@ body {
 .pageHead {
   padding-top: 15px;
   padding: 0px;
+  margin-bottom:25px;
 }
-
-.gameContent,
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 80%;
+  justify-content: center;
+}
 .characterIcons,
 .userCharacter,
 .enemiesToChoose,
 .fightSection {
+  display: flex;
   font-size: 20px;
-  overflow: auto;
-  margin: auto;
-  width: auto;
   text-align: left;
+  /* width:50%; */
+  justify-content: space-between;
+}
+.defender {
+  font-size: 20px;
+}
+.userCharacter {
+  display: flex;
+}
+.character.user,
+.character.opponent,
+.character.enemy {
+  flex-direction: column;
 }
 .gameContent {
 }
 .characterIcons {
-  margin: auto;
 }
 .charTitle {
 }
 .character {
-  float: left;
-  width: 15%;
-  overflow: auto;
   margin: 5px;
   padding: 5px;
   border: 2px solid grey;
@@ -58,30 +71,42 @@ body {
 .enemyHead,
 .defenderTitle {
   font-size: 30px;
-  padding-top: 10px;
+}
+.playerHead{
+    margin:auto;
 }
 .playerContent {
-  clear: both;
-  padding-left: 15px;
+  display: flex;
+  flex-wrap: nowrap;
   font-size: 30px;
+  width: 60%;
+  margin: auto;
+  justify-content: space-between;
+  margin-top:20px;
+}
+.dTitleText {
+  text-align: center;
+  margin: auto;
 }
 .playContent {
-  padding-left: 15px;
+margin-top: 20px;
 }
 .fightSection {
-  clear: both;
+  /* clear: both; */
   /* padding-left:10px; */
   width: auto;
-  overflow: auto;
+  margin:auto;
+  
 }
 .attackButton {
-  width: 6%;
-  height: auto;
-  border: 1px solid lightcyan;
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid lightgrey;
   text-align: center;
   background: white;
   color: black;
-  margin-top: 10px;
+  justify-content: center;
 }
 .attackButton:hover {
   cursor: pointer;
@@ -89,23 +114,43 @@ body {
 }
 .enemies {
   clear: both;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
 }
-.defender {
-  clear: both;
+.enemiesToChoose {
+  display: flex;
+  /* flex-direction: column */
+  justify-content: left;
+  width: auto;
+  margin: auto;
+}
+.attackWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  margin: auto;
+  height: auto;
+  width: 20%;
+}
+.defenderTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 .opponent {
   overflow: auto;
 }
 .active {
-  display: block;
+  display: flex;
 }
 
 .inactive {
   display: none;
 }
 .result {
-  clear: both;
-  margin-bottom: 20px;
   font-size: 30px;
 }
 img {
@@ -113,36 +158,39 @@ img {
   height: 200px;
 }
 .rstButton {
-  width: 6%;
-  height: auto;
-  border: 1px solid lightcyan;
-  margin-left: 5px;
+  width: auto;
+  padding:5px;
+  height: 25px;
+  border: 2px solid lightgrey;
+  margin:auto;
+  margin-top:20px;
   text-align: center;
   background: white;
   color: black;
+  clear:both;
 }
 .rstButton:hover {
   cursor: pointer;
   background: lightcyan;
 }
 .noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
-  }
-  .character.enemy{
-      background:darkred;
-  }
-  .character.user{
-      background:lightseagreen;
-  }
-  .character.enemy:hover{
-      background:red;
-  }
-  .character.opponent{
-      background:red;
-  }
+}
+.character.enemy {
+  background: darkred;
+}
+.character.user {
+  background: lightseagreen;
+}
+.character.enemy:hover {
+  background: red;
+}
+.character.opponent {
+  background: red;
+}

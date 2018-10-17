@@ -141,7 +141,7 @@ $(document).ready(function() {
 
   var gameOn = false;
   var attackMode = false; //Not attack mode until a defender has been chosen
-
+  var oppLeft = 0;
   gameStart();
   // Build characters in each section (select,user,enemy choice, defender)
   function gameStart() {
@@ -150,6 +150,11 @@ $(document).ready(function() {
     $(".characterIcons").html("");
     $(".userCharacter").html("");
     $(".enemiesToChoose").html("");
+    $(".dTitleText").attr("style", "display:block");
+    $(".attackWrap").attr("style", "display:block");
+    $(".playerHead").attr("style", "display:block");
+    $(".playContent").attr("style", "display:block");
+
 
     gameStruct.build("characterIcons", "cSelect");
     gameStruct.build("userCharacter", "user");
@@ -181,6 +186,8 @@ $(document).ready(function() {
         gameStruct.show([gameStruct.allChar()[name]], "enemy");
       }
     }
+    oppLeft = Object.keys(gameStruct.characters).length-1;
+    console.log("Opponents Left: "+oppLeft);
   });
 
   //   $(".character.user").on("click", function(event) {});
@@ -196,7 +203,10 @@ $(document).ready(function() {
       gameStruct.show([classList[1]], "opponent");
       gameStruct.hide([classList[1]], "enemy");
       attackMode = true;
-      $(".result").attr("style", "display:none")
+      $(".attackWrap").attr("style", "display:flex");
+      $(".dTitleText").attr("style", "display:flex");
+
+      $(".result").attr("style", "display:none");
     }
   });
 
@@ -209,7 +219,6 @@ $(document).ready(function() {
       var oppTag = $(".opponent.active")
         .attr("class")
         .split(" ")[1];
-
 
       $(".opponent.active").attr(
         "value",
@@ -236,9 +245,21 @@ $(document).ready(function() {
   function didWin(userTag, oppTag) {
     if (Math.floor(Number($(".opponent.active").attr("value")) <= 0)) {
       $(".result").html(oppTag.toUpperCase() + " has been defeated!");
-      $(".result").attr("style","display:block")
+      $(".result").attr("style", "display:block");
       gameStruct.hide([oppTag], "opponent");
       attackMode = false;
+      $(".attackWrap").attr("style", "display:none");
+      $(".dTitleText").attr("style", "display:none");
+      oppLeft-=1;
+      console.log("Opponents Left: "+oppLeft);
+
+      if(oppLeft<=0){
+        $(".result").html($(".result").html()+" YOU WIN!!");
+        $(".rstButton").attr("style", "display:flex");
+        $(".reSomething").html("REPLAY");
+
+
+      }
       return true;
     } else {
       return false;
@@ -268,19 +289,24 @@ $(document).ready(function() {
       $(".result").html(
         userTag.toUpperCase() + " has been defeated! YOU LOSE!"
       );
-      $(".result").attr("style","display:block")
+      $(".result").attr("style", "display:block");
       gameStruct.hide([userTag], "user");
       gameStruct.hide([oppTag], "opponent");
 
       attackMode = false;
       gameOn = false;
 
-      $(".rstButton").attr("style", "display:block");
+      $(".rstButton").attr("style", "display:flex");
+      $(".reSomething").html("RESTART");
+
+      $(".dTitleText").attr("style", "display:none");
+      $(".attackWrap").attr("style", "display:none");
+      $(".playerHead").attr("style", "display:none");
+      $(".playContent").attr("style", "display:none");
     }
   }
 
   $(".rstButton").on("click", function() {
-
     gameStart();
   });
 });
