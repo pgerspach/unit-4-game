@@ -8,32 +8,36 @@ $(document).ready(function() {
         gandalf: {
           class: "gandalf",
           health: 230,
-          attack: 45,
-          mult: 1.3,
+          baseAttack: 9,
+          attack: 9,
+          counter: 12,
           text: "Gandalf",
           image: "assets/images/gandalf.jpg"
         },
         sauron: {
           class: "sauron",
-          health: 190,
-          attack: 50,
-          mult: 1.1,
+          health: 180,
+          baseAttack: 11,
+          attack: 11,
+          counter: 18,
           text: "Sauron",
           image: "assets/images/sauron.jpg"
         },
         aragorn: {
           class: "aragorn",
           health: 200,
-          attack: 45,
-          mult: 1.4,
+          baseAttack: 8,
+          attack: 8,
+          counter: 14,
           text: "Aragorn",
           image: "assets/images/aragorn.png"
         },
         legolas: {
           class: "legolas",
           health: 170,
-          attack: 55,
-          mult: 1.3,
+          baseAttack: 7,
+          attack: 7,
+          counter: 18,
           text: "Legolas",
           image: "assets/images/legolas.jpg"
         },
@@ -41,8 +45,9 @@ $(document).ready(function() {
           // to add Uruk-hai to game all you have to do is uncomment
           class: "urukHai",
           health: 120,
-          attack: 38,
-          mult: 1.5,
+          baseAttack: 10,
+          attack: 10,
+          counter: 19,
           text: "Uruk-Hai",
           image: "assets/images/uruk-hai.jpg"
         }
@@ -175,7 +180,6 @@ $(document).ready(function() {
       if (gameStruct.allChar()[name] != classList[1]) {
         gameStruct.show([gameStruct.allChar()[name]], "enemy");
       }
-      //enemiesLeft.push(gameStruct.allChar()[name]);
     }
   });
 
@@ -204,54 +208,76 @@ $(document).ready(function() {
       var oppTag = $(".opponent.active")
         .attr("class")
         .split(" ")[1];
-      var oppAttack = gameStruct.characters[oppTag].attack;
-      var userAttack = gameStruct.characters[userTag].attack;
-      var oppHealth = gameStruct.characters[oppTag].health;
-      var userHealth = gameStruct.characters[userTag].health;
-      console.log(oppTag);
+
 
       $(".opponent.active").attr(
         "value",
         String(
-          Math.floor(Number($(".opponent.active").attr("value")) - userAttack)
+          Math.floor(
+            Number($(".opponent.active").attr("value")) -
+              gameStruct.characters[userTag].attack
+          )
         )
       );
+
       $(".charPoints." + oppTag + ".opponent").html(
         String($(".opponent.active").attr("value"))
       );
-      if (Math.floor(Number($(".opponent.active").attr("value")) <= 0)) {
-        $(".result").html(oppTag.toUpperCase() + " has been defeated!");
-        gameStruct.hide([oppTag], "opponent");
-        attackMode = false;
-      } else {
-        gameStruct.characters[userTag].attack =
-          gameStruct.characters[userTag].attack *
-          gameStruct.characters[userTag].mult;
-        $(".user.active").attr(
-          "value",
-          String(
-            Math.floor(Number($(".user.active").attr("value")) - oppAttack)
-          )
-        );
-        $(".charPoints." + userTag + ".user").html(
-          String($(".user.active").attr("value"))
-        );
-        if (Math.floor(Number($(".user.active").attr("value")) <= 0)) {
-          $(".result").html(
-            userTag.toUpperCase() + " has been defeated! YOU LOSE!"
-          );
-          gameStruct.hide([userTag], "user");
-          gameStruct.hide([oppTag], "opponent");
 
-          attackMode = false;
-          gameOn = false;
-          $(".rstButton").attr("style", "display:block");
-        }
+      if (!didWin(userTag, oppTag)) {
+        oppCounter(userTag, oppTag);
+
+        didLose(userTag, oppTag);
       }
     }
   });
-  $(".rstButton").on("click", function(event) {
-    //after everything has been selected, look for attack button to be pressed
+
+  function didWin(userTag, oppTag) {
+    if (Math.floor(Number($(".opponent.active").attr("value")) <= 0)) {
+      $(".result").html(oppTag.toUpperCase() + " has been defeated!");
+      gameStruct.hide([oppTag], "opponent");
+      attackMode = false;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function oppCounter(userTag, oppTag) {
+    gameStruct.characters[userTag].attack =
+      gameStruct.characters[userTag].attack +
+      gameStruct.characters[userTag].baseAttack;
+    $(".user.active").attr(
+      "value",
+      String(
+        Math.floor(
+          Number($(".user.active").attr("value")) -
+            gameStruct.characters[oppTag].counter
+        )
+      )
+    );
+    $(".charPoints." + userTag + ".user").html(
+      String($(".user.active").attr("value"))
+    );
+  }
+
+  function didLose(userTag, oppTag) {
+    if (Math.floor(Number($(".user.active").attr("value")) <= 0)) {
+      $(".result").html(
+        userTag.toUpperCase() + " has been defeated! YOU LOSE!"
+      );
+      gameStruct.hide([userTag], "user");
+      gameStruct.hide([oppTag], "opponent");
+
+      attackMode = false;
+      gameOn = false;
+
+      $(".rstButton").attr("style", "display:block");
+    }
+  }
+
+  $(".rstButton").on("click", function() {
+
     gameStart();
   });
 });

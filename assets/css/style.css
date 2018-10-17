@@ -1,101 +1,127 @@
-body{
-    font-size: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-sizing:border-box;
-    background: lightseagreen;
+body {
+  font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  box-sizing: border-box;
+  background: url("../images/mordor.jpg");
+  color: white;
 }
 
-.pageHead{
-    padding-top:15px;
+.pageHead {
+  padding-top: 15px;
+  padding: 0px;
 }
+
 .gameContent,
 .characterIcons,
 .userCharacter,
 .enemiesToChoose,
-{
-    align-content: left;
-    padding:10px;
-    font-size:20px;
-    overflow:auto;
+.fightSection {
+  font-size: 20px;
+  overflow: auto;
+  margin: auto;
+  width: auto;
+  text-align: left;
 }
-.charTitle{
-    text-align:center;
+.gameContent {
 }
-.character{
-    float:left;
-    width:15%;
-    overflow:auto;
-    margin: 5px;
-    padding:5px;
-    border:2px solid grey;
-    background: silver;
-
+.characterIcons {
+  margin: auto;
 }
-.pageTitle{
-    font-size: 40px;
-    text-align:right;
-    padding-right: 15%;
+.charTitle {
 }
-.charPoints{
-    text-align:center;
+.character {
+  float: left;
+  width: 15%;
+  overflow: auto;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid grey;
+  background: silver;
+  color: black;
+  text-align: center;
+  align-content: center;
+}
+.character:hover {
+  background: lightcyan;
+  cursor: pointer;
+}
+.pageTitle {
+  text-align: center;
+  font-family: "Sofadi One", cursive;
+  font-size: 50px;
+}
+.charPoints {
+  text-align: center;
 }
 .playerHead,
-.fightTitle{
-    padding:10px;
-    font-size: 30px;
+.fightTitle,
+.enemyHead,
+.defenderTitle {
+  font-size: 30px;
+  padding-top: 10px;
 }
-.playerContent{
-    clear:both;
-    padding:0px;
-    font-size:30px;
+.playerContent {
+  clear: both;
+  padding-left: 15px;
+  font-size: 30px;
 }
-
-.fightSection{
-    clear:both;
-    /* padding-left:10px; */
-    width:auto;
-    overflow:auto;
+.playContent {
+  padding-left: 15px;
 }
-.attackButton{
-    width:6%;
-    height:auto;
-    border: 1px solid lightcyan;
-    margin-left:5px;
-    text-align:center;
+.fightSection {
+  clear: both;
+  /* padding-left:10px; */
+  width: auto;
+  overflow: auto;
 }
-.enemies{
-    clear:both;
+.attackButton {
+  width: 6%;
+  height: auto;
+  border: 1px solid lightcyan;
+  text-align: center;
+  background: white;
+  color: black;
+  margin-top: 10px;
 }
-.defender{
-    clear:both;
+.attackButton:hover {
+  cursor: pointer;
+  background: lightcyan;
 }
-.opponent{
-    /* overflow:auto; */
-    align-content: center;
-
+.enemies {
+  clear: both;
 }
-.active{
-    display:block;
+.defender {
+  clear: both;
 }
-
-.inactive{
-    display:none;
+.opponent {
+  overflow: auto;
 }
-.result{
-    clear:both;
-}
-img{
-    width:200px;
-    height:200px;
-}
-.rstButton{
-    width:6%;
-    height:auto;
-    border: 1px solid lightcyan;
-    margin-left:5px;
-    text-align:center;
+.active {
+  display: block;
 }
 
-
-
-
+.inactive {
+  display: none;
+}
+.result {
+  clear: both;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+img {
+  width: 200px;
+  height: 200px;
+}
+.rstButton {
+  width: 6%;
+  height: auto;
+  border: 1px solid lightcyan;
+  margin-left: 5px;
+  text-align: center;
+  background: white;
+  color: black;
+}
+.rstButton:hover {
+  cursor: pointer;
+  background: lightcyan;
+}
