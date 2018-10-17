@@ -50,7 +50,16 @@ $(document).ready(function() {
           counter: 19,
           text: "Uruk-Hai",
           image: "assets/images/uruk-hai.jpg"
-        }
+        },
+        // hobbits: {
+        //   class: "hobbits",
+        //   health: 160,
+        //   baseAttack: 8,
+        //   attack: 8,
+        //   counter: 16,
+        //   text: "Frodo, Sam, Pip, and Merry",
+        //   image: "assets/images/hobbits.jpg"
+        // }
       },
       standardIcon: function(section, classInsert, spec) {
         var retString =

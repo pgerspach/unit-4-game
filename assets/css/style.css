@@ -7,9 +7,10 @@ body {
 }
 
 .pageHead {
+  margin-top: 10px;
   padding-top: 15px;
   padding: 0px;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 }
 .container {
   display: flex;
@@ -27,6 +28,9 @@ body {
   text-align: left;
   /* width:50%; */
   justify-content: space-between;
+}
+.characterIcons{
+    flex-wrap: wrap;
 }
 .defender {
   font-size: 20px;
@@ -72,8 +76,9 @@ body {
 .defenderTitle {
   font-size: 30px;
 }
-.playerHead{
-    margin:auto;
+.playerHead {
+  margin: auto;
+  text-align:center;
 }
 .playerContent {
   display: flex;
@@ -82,21 +87,20 @@ body {
   width: 60%;
   margin: auto;
   justify-content: space-between;
-  margin-top:20px;
+  margin-top: 20px;
 }
 .dTitleText {
   text-align: center;
   margin: auto;
 }
 .playContent {
-margin-top: 20px;
+  margin-top: 20px;
 }
 .fightSection {
   /* clear: both; */
   /* padding-left:10px; */
   width: auto;
-  margin:auto;
-  
+  margin: auto;
 }
 .attackButton {
   display: flex;
@@ -159,15 +163,15 @@ img {
 }
 .rstButton {
   width: auto;
-  padding:5px;
+  padding: 5px;
   height: 25px;
   border: 2px solid lightgrey;
-  margin:auto;
-  margin-top:20px;
+  margin: auto;
+  margin-top: 20px;
   text-align: center;
   background: white;
   color: black;
-  clear:both;
+  clear: both;
 }
 .rstButton:hover {
   cursor: pointer;
