@@ -7,7 +7,7 @@ $(document).ready(function() {
         //Object of character objects. This design is intended to make the addition/removal of characters to/from the game easy as editing just this part.
         gandalf: {
           class: "gandalf",
-          health: 240,
+          health: 230,
           baseAttack: 9,
           attack: 9,
           counter: 13,
@@ -19,7 +19,7 @@ $(document).ready(function() {
           health: 180,
           baseAttack: 11,
           attack: 11,
-          counter: 18,
+          counter: 19,
           text: "Sauron",
           image: "assets/images/sauron.jpg"
         },
@@ -37,14 +37,14 @@ $(document).ready(function() {
           health: 190,
           baseAttack: 7,
           attack: 8,
-          counter: 18,
+          counter: 17,
           text: "Legolas",
           image: "assets/images/legolas.jpg"
         },
         urukHai: {
           // to add Uruk-hai to game all you have to do is uncomment
           class: "urukHai",
-          health: 140,
+          health: 145,
           baseAttack: 11,
           attack: 10,
           counter: 19,
@@ -53,11 +53,11 @@ $(document).ready(function() {
         },
         // hobbits: {
         //   class: "hobbits",
-        //   health: 160,
+        //   health: 250,
         //   baseAttack: 8,
-        //   attack: 8,
+        //   attack: 6,
         //   counter: 16,
-        //   text: "Frodo, Sam, Pip, and Merry",
+        //   text: "Frodo, Sam, Pip, + Merry",
         //   image: "assets/images/hobbits.jpg"
         // }
       },
