@@ -50,7 +50,7 @@ $(document).ready(function() {
           counter: 19,
           text: "Uruk-Hai",
           image: "assets/images/uruk-hai.jpg"
-        },
+        }
         // hobbits: {
         //   class: "hobbits",
         //   health: 250,
@@ -106,7 +106,7 @@ $(document).ready(function() {
             gameThis.characters[char].image
           );
           $(".charPoints." + gameThis.characters[char].class).html(
-            "HP: "+String(gameThis.characters[char].health)
+            "HP: " + String(gameThis.characters[char].health)
           );
         }
       },
@@ -164,7 +164,6 @@ $(document).ready(function() {
     $(".playerHead").attr("style", "display:block");
     $(".playContent").attr("style", "display:block");
 
-
     gameStruct.build("characterIcons", "cSelect");
     gameStruct.build("userCharacter", "user");
     gameStruct.build("enemiesToChoose", "enemy");
@@ -179,49 +178,93 @@ $(document).ready(function() {
     //var enemiesLeft=[];
     attackMode = false; //Not attack mode until a defender has been chosen
     gameOn = true;
-    $(".cSelect.character").hover(function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-      $(".charPoints."+thisChar).html("POWER: "+ String(gameStruct.characters[thisChar].attack));
-    }, function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-  
-      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
-    })
-  
-    $(".user.character").hover(function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-      $(".charPoints."+thisChar).html("POWER: "+ String(gameStruct.characters[thisChar].attack));
-    }, function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-  
-      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
-    })
-  
-    $(".opponent.character").hover(function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-      $(".charPoints."+thisChar).html("COUNTER: "+ String(gameStruct.characters[thisChar].counter));
-    }, function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-  
-      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
-    })
-  
-    $(".enemy.character").hover(function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-      $(".charPoints."+thisChar).html("COUNTER: "+ String(gameStruct.characters[thisChar].counter));
-    }, function(){
-      var thisChar = $(this).attr("class").split(" ")[1];
-      console.log(thisChar);
-  
-      $(".charPoints."+thisChar).html("HP: "+ String(gameStruct.characters[thisChar].health));
-    })
+    $(".cSelect.character").hover(
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+        $(".charPoints." + thisChar).html(
+          "POWER: " + String(gameStruct.characters[thisChar].attack)
+        );
+      },
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+
+        $(".charPoints." + thisChar).html(
+          "HP: " + String(gameStruct.characters[thisChar].health)
+        );
+      }
+    );
+
+    $(".user.character").hover(
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+        $(".charPoints." + thisChar).html(
+          "POWER: " + String(gameStruct.characters[thisChar].attack)
+        );
+      },
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+
+        $(".charPoints." + thisChar).html(
+          "HP: " + String(gameStruct.characters[thisChar].health)
+        );
+      }
+    );
+
+    $(".opponent.character").hover(
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+        $(".charPoints." + thisChar).html(
+          "COUNTER: " + String(gameStruct.characters[thisChar].counter)
+        );
+      },
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+
+        $(".charPoints." + thisChar).html(
+          "HP: " + String(gameStruct.characters[thisChar].health)
+        );
+      }
+    );
+
+    $(".enemy.character").hover(
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+        $(".charPoints." + thisChar).html(
+          "COUNTER: " + String(gameStruct.characters[thisChar].counter)
+        );
+      },
+      function() {
+        var thisChar = $(this)
+          .attr("class")
+          .split(" ")[1];
+        console.log(thisChar);
+
+        $(".charPoints." + thisChar).html(
+          "HP: " + String(gameStruct.characters[thisChar].health)
+        );
+      }
+    );
   }
 
   $(".characterIcons").on("click", function(event) {
@@ -238,10 +281,9 @@ $(document).ready(function() {
         gameStruct.show([gameStruct.allChar()[name]], "enemy");
       }
     }
-    oppLeft = Object.keys(gameStruct.characters).length-1;
+    oppLeft = Object.keys(gameStruct.characters).length - 1;
     //console.log("Opponents Left: "+oppLeft);
   });
-  
 
   //   $(".character.user").on("click", function(event) {});
 
@@ -272,22 +314,17 @@ $(document).ready(function() {
       var oppTag = $(".opponent.active")
         .attr("class")
         .split(" ")[1];
-  gameStruct.characters[oppTag].health =Math.floor(
-    Number($(".opponent.active").attr("value")) -
-    gameStruct.characters[userTag].attack
-)
-
+      gameStruct.characters[oppTag].health = Math.floor(
+        Number($(".opponent.active").attr("value")) -
+          gameStruct.characters[userTag].attack
+      );
       $(".opponent.active").attr(
         "value",
-        String(
-          gameStruct.characters[oppTag].health
-        )
+        String(gameStruct.characters[oppTag].health)
       );
-
-      $(".charPoints." + oppTag + ".opponent").html("HP: "+
-        String($(".opponent.active").attr("value"))
+      $(".charPoints." + oppTag + ".opponent").html(
+        "HP: " + String($(".opponent.active").attr("value"))
       );
-
       if (!didWin(userTag, oppTag)) {
         oppCounter(userTag, oppTag);
 
@@ -304,15 +341,13 @@ $(document).ready(function() {
       attackMode = false;
       $(".attackWrap").attr("style", "display:none");
       $(".dTitleText").attr("style", "display:none");
-      oppLeft-=1;
-      console.log("Opponents Left: "+oppLeft);
+      oppLeft -= 1;
+      console.log("Opponents Left: " + oppLeft);
 
-      if(oppLeft<=0){
-        $(".result").html($(".result").html()+" YOU WIN!!");
+      if (oppLeft <= 0) {
+        $(".result").html($(".result").html() + " YOU WIN!!");
         $(".rstButton").attr("style", "display:flex");
         $(".reSomething").html("REPLAY");
-
-
       }
       return true;
     } else {
@@ -324,20 +359,17 @@ $(document).ready(function() {
     gameStruct.characters[userTag].attack =
       gameStruct.characters[userTag].attack +
       gameStruct.characters[userTag].baseAttack;
-      gameStruct.characters[userTag].health =
-        Math.floor(
-          Number($(".user.active").attr("value")) -
-            gameStruct.characters[oppTag].counter
-        )
-      
+    gameStruct.characters[userTag].health = Math.floor(
+      Number($(".user.active").attr("value")) -
+        gameStruct.characters[oppTag].counter
+    );
+
     $(".user.active").attr(
       "value",
-      String(
-        gameStruct.characters[userTag].health
-      )
+      String(gameStruct.characters[userTag].health)
     );
-    $(".charPoints." + userTag + ".user").html("HP: "+
-      String($(".user.active").attr("value"))
+    $(".charPoints." + userTag + ".user").html(
+      "HP: " + String($(".user.active").attr("value"))
     );
   }
 
@@ -366,5 +398,4 @@ $(document).ready(function() {
   $(".rstButton").on("click", function() {
     gameStart();
   });
- 
 });
